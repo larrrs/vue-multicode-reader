@@ -66,7 +66,7 @@ export default {
 
       // pretend it's taking really long
       await this.timeout(3000)
-      this.isValid = content.startsWith('http')
+      this.isValid = true // content.startsWith('http')
 
       // some more delay, so users have time to read the message
       await this.timeout(2000)

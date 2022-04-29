@@ -5,6 +5,8 @@
     If z-index is not defined, elements are stacked in the order they appear in the DOM.
     The first element is at the very bottom and subsequent elements are added on top.
     -->
+    <div ref="quagga" class="barcode-stream-camera"></div>
+
     <video
       ref="video"
       :class="{ 'qrcode-stream-camera--hidden': !shouldScan }"
@@ -32,6 +34,7 @@
 import { keepScanning } from "../misc/scanner.js";
 import Camera from "../misc/camera.js";
 import CommonAPI from "../mixins/CommonAPI.vue";
+import Quagga from '@ericblade/quagga2'; 
 
 export default {
   name: "qrcode-stream",
@@ -151,6 +154,7 @@ export default {
           // stream.
           if (this.destroyed) {
             this.cameraInstance.stop();
+            Quagga.stop();
           }
 
           return {
@@ -158,6 +162,27 @@ export default {
           };
         }
       })();
+
+      Quagga.init({
+        numOfWorkers: 0,
+        inputStream : {
+          name : "Live",
+          type : "LiveStream",
+          target: this.$refs.quagga 
+        },
+        decoder : {
+          readers : ["code_128_reader", "ean_8_reader", "ean_reader"]
+        }
+      }, (err) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          Quagga.onDetected((callback) => { 
+            this.quaggaHandler(callback);
+          });
+          Quagga.start();
+      });
 
       this.$emit("init", promise);
     },
@@ -178,6 +203,7 @@ export default {
       if (this.cameraInstance !== null) {
         this.cameraInstance.stop();
         this.cameraInstance = null;
+        Quagga.stop();
       }
     },
 
@@ -272,8 +298,8 @@ export default {
     },
 
     clearCanvas(canvas) {
-      const ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const ctx = canvas?.getContext("2d");
+      ctx?.clearRect(0, 0, canvas.width, canvas.height);
     }
 
   }
@@ -317,8 +343,9 @@ export default {
  * element was hidden with `display: none`. Using `visibility: hidden`
  * instead seems to have fixed the problem though.
  */
-.qrcode-stream-camera--hidden {
+.qrcode-stream-camera--hidden, .barcode-stream-camera {
   visibility: hidden;
   position: absolute;
 }
+
 </style>

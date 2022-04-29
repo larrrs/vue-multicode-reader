@@ -69,7 +69,6 @@ export default {
         const centerY = boundingBox.y + boundingBox.height/ 2
 
         const fontSize = Math.max(12, 50 * boundingBox.width/ctx.canvas.width)
-        console.log(boundingBox.width, ctx.canvas.width)
 
         ctx.font = `bold ${fontSize}px sans-serif`
         ctx.textAlign = "center"

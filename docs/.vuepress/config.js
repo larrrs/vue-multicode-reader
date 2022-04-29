@@ -1,15 +1,15 @@
 module.exports = {
-  title: 'Vue Qrcode Reader',
-  description: 'A set of Vue.js components for detecting and decoding QR codes.',
+  title: 'Vue Multicode Reader',
+  description: 'A fork of https://gruhn.github.io/vue-qrcode-reader integrating https://github.com/ericblade/quagga2 1D barcode reader',
 
-  base: '/vue-qrcode-reader/',
+  base: '/vue-multicode-reader/',
 
   extraWatchFiles: [
     '../src/'
   ],
 
   themeConfig: {
-    repo: 'gruhn/vue-qrcode-reader',
+    repo: 'larrrs/vue-multicode-reader',
 
     sidebar: {
       '/demos/': [

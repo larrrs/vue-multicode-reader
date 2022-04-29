@@ -1,16 +1,16 @@
 {
-  "name": "vue-qrcode-reader",
-  "description": "A set of Vue.js components for detecting and decoding QR codes.",
-  "version": "0.0.0-development",
+  "name": "vue-multicode-reader",
+  "description": "A fork of https://gruhn.github.io/vue-qrcode-reader integrating https://github.com/ericblade/quagga2 1D barcode reader",
+  "version": "0.0.13",
   "author": {
-    "name": "Niklas Gruhn",
-    "email": "niklas@gruhn.me"
+    "name": "Lars Piepel",
+    "email": "lars@piepel.net"
   },
-  "repository": "github:gruhn/vue-qrcode-reader",
-  "bugs": "https://github.com/gruhn/vue-qrcode-reader/issues",
-  "homepage": "https://gruhn.github.io/vue-qrcode-reader",
-  "main": "dist/VueQrcodeReader.common.js",
-  "unpkg": "dist/VueQrcodeReader.umd.min.js",
+  "repository": "github:larrrs/vue-multicode-reader",
+  "bugs": "https://github.com/larrrs/vue-multicode-reader/issues",
+  "homepage": "",
+  "main": "dist/VueMulticodeReader.common.js",
+  "unpkg": "dist/VueMulticodeReader.umd.min.js",
   "keywords": [
     "vue",
     "vuejs",
@@ -25,10 +25,11 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build:docs": "vuepress build docs",
-    "build": "vue-cli-service build --target lib --name VueQrcodeReader src/index.js",
+    "build": "vue-cli-service build --target lib --name VueMulticodeReader src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@ericblade/quagga2": "^1.7.0",
     "barcode-detector": "^1.0.0",
     "callforth": "^0.3.1",
     "core-js": "^3.6.5",
